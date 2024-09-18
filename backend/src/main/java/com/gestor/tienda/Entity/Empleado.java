@@ -16,8 +16,8 @@ public class Empleado extends Persona{
     //private List<Vehiculo> vehiculo;
     //private LocalDate fecha;
 
-    public Empleado(String nombre, String apellido, String ciudad, String telefono, String email, String domicilio/*LocalDate fecha*/){
-        super(nombre, apellido, ciudad, telefono, email, domicilio);
+    public Empleado(String nombre, String apellido, String dni, String telefono, String email, String domicilio/*LocalDate fecha*/){
+        super(nombre, apellido, dni, telefono, email, domicilio);
         //this.fecha = fecha;
     }
 }
