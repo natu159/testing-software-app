@@ -127,15 +127,4 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }        
     }
-
-  /*@GetMapping("/listByFecha/{fecha}")
-    public ResponseEntity<List<Cliente>> findByFecha(@PathVariable LocalDate fecha){
-
-        try {
-            List<Cliente> clientes = clienteService.findByFecha(fecha);
-            return new ResponseEntity<>(clientes, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }        
-    }*/
 }

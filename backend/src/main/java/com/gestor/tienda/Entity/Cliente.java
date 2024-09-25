@@ -9,15 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cliente extends Persona{   
-
-    //@OneToMany(mappedBy = "cliente")
-    //@JsonBackReference
-    //private List<Vehiculo> vehiculo;
-    //private LocalDate fecha;
-
-    public Cliente(String nombre, String apellido, String dni, String telefono, String email, String domicilio/*LocalDate fecha*/){
+public class Cliente extends Persona {
+    public Cliente(String nombre, String apellido, String dni, String telefono, String email, String domicilio) {
         super(nombre, apellido, dni, telefono, email, domicilio);
-        //this.fecha = fecha;
     }
 }

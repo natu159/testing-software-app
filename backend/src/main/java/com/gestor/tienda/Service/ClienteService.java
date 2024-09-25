@@ -41,11 +41,7 @@ public class ClienteService {
     public List<Cliente> findByNombre(String nombre){
         return clienteRepository.findByNombre(nombre);
     }
-/*
-    public List<Cliente> findByFecha(LocalDate fecha){
-        return clienteRepository.findByFecha(fecha);
-    }
-*/
+
     public boolean existsById(int id) {
         return clienteRepository.existsById(id);
     }
