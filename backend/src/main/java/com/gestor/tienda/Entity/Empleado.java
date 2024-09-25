@@ -9,8 +9,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Empleado extends Persona {
-    public Empleado(String nombre, String apellido, String dni, String telefono, String email, String domicilio) {
-        super(nombre, apellido, dni, telefono, email, domicilio);
+public class Empleado extends Persona{   
+
+    //@OneToMany(mappedBy = "empleado")
+    //@JsonBackReference
+    //private List<Vehiculo> vehiculo;
+    //private LocalDate fecha;
+
+    public Empleado(String nombre, String apellido, String ciudad, String telefono, String email, String domicilio/*LocalDate fecha*/){
+        super(nombre, apellido, ciudad, telefono, email, domicilio);
+        //this.fecha = fecha;
     }
 }
