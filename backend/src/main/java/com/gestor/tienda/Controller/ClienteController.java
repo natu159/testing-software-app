@@ -31,7 +31,6 @@ public class ClienteController {
     @GetMapping("/list")
     public ResponseEntity<List<Cliente>> findAll() {
         List<Cliente> list = clienteService.findAll();
-        //list.forEach(cliente -> Hibernate.initialize(cliente.getVehiculo()));
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -54,7 +53,6 @@ public class ClienteController {
             clienteDto.getTelefono(),
             clienteDto.getEmail(),
             clienteDto.getDomicilio()
-            //clienteDto.getFecha()
             );
 
             clienteService.save(clienteNuevo);
@@ -76,7 +74,6 @@ public class ClienteController {
         cliente.setTelefono(clienteDto.getTelefono());
         cliente.setEmail(clienteDto.getEmail());
         cliente.setDomicilio(clienteDto.getDomicilio());
-        //cliente.setFecha(clienteDto.getFecha());
 
         clienteService.save(cliente);
 
