@@ -1,19 +1,20 @@
 package com.gestor.tienda.Controller;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
-@RequestMapping("/public")
-@RequiredArgsConstructor
-public class PublicController {
 
-    @GetMapping("/home")
-    public String home() {
-        return "Public Home";
+@RestController
+@RequestMapping("/api/v1")
+@RequiredArgsConstructor
+public class DemoController {
+    
+    @PostMapping(value = "demo")
+    public String welcome() {
+        return "Bienvenido desde el endpoint seguro";
     }
 }
+

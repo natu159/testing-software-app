@@ -32,4 +32,6 @@ public class DetalleOrdenService {
     public void deleteDetalleOrden(Integer id) {
         detalleOrdenRepository.deleteById(id);
     }
+
+    
 }

@@ -16,3 +16,4 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
     Boolean existsByDni(String dni);
     Optional<Empleado> findByUsername(String username);
 }
+
