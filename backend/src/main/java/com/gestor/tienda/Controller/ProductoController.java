@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -79,9 +80,34 @@ public class ProductoController {
     public ResponseEntity<?> deleteProducto(@PathVariable int id) {
         if (productoService.getProductoById(id).isPresent()) {
             productoService.deleteProducto(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Producto eliminado exitosamente.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error al eliminar el producto.", HttpStatus.OK);
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateProducto(@PathVariable int id, @RequestBody ProductoDto productoDto) {
+        Optional<Producto> productoOptional = productoService.getProductoById(id);
+        if (productoOptional.isEmpty()) {
+            return new ResponseEntity<>("Producto no encontrado.", HttpStatus.NOT_FOUND);
+        }
+
+        Producto productoExistente = productoOptional.get();
+        productoExistente.setNombre(productoDto.getNombre());
+        productoExistente.setPrecio(productoDto.getPrecio());
+        productoExistente.setTalle(productoDto.getTalle());
+        productoExistente.setColor(productoDto.getColor());
+        productoExistente.setMarca(productoDto.getMarca());
+
+        Optional<TipoPrenda> tipoPrendaOpt = tipoPrendaService.getTipoPrendaById(productoDto.getTipoPrendaId());
+        if (!tipoPrendaOpt.isPresent()) {
+            return new ResponseEntity<>("Tipo de prenda no encontrado.", HttpStatus.BAD_REQUEST);
+        }
+
+        productoExistente.setTipoPrenda(tipoPrendaOpt.get());
+
+        productoService.saveProducto(productoExistente);
+        return new ResponseEntity<>("Producto actualizado exitosamente.", HttpStatus.OK);
     }
 }

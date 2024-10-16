@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gestor.tienda.Entity.Empleado;
 import com.gestor.tienda.Repository.EmpleadoRepository;
 
+
 @Service
 public class EmpleadoService {
 
@@ -35,11 +36,11 @@ public class EmpleadoService {
         return empleadoRepository.existsByDni(dni);
     }
 
-    public void saveEmpleado(Empleado empleado) {
+    public Empleado saveEmpleado(Empleado empleado) {
         // Codifica la contraseña antes de guardar
         String encodedPassword = bCryptPasswordEncoder.encode(empleado.getPassword());
         empleado.setPassword(encodedPassword);
-        empleadoRepository.save(empleado);
+        return empleadoRepository.save(empleado);
     }
 
     public void deleteById(int id) {

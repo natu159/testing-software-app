@@ -23,12 +23,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false) 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "empleado", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class Empleado extends Persona implements UserDetails {
@@ -47,22 +46,17 @@ public class Empleado extends Persona implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    // Atributos heredados de Persona
+    /*Atributos heredados de Persona (comentados para evitar duplicación)
     private String nombre;
     private String apellido;
     private String dni;
     private String telefono;
     private String email;
-    private String domicilio;
+    private String domicilio;*/
 
     // Constructor con todos los parámetros
     public Empleado(String nombre, String apellido, String dni, String telefono, String email, String domicilio, String username, String password, Rol rol) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.telefono = telefono;
-        this.email = email;
-        this.domicilio = domicilio;
+        super(nombre, apellido, dni, telefono, email, domicilio);
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -93,3 +87,4 @@ public class Empleado extends Persona implements UserDetails {
         return true;
     }
 }
+

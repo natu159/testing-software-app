@@ -45,9 +45,14 @@ public class EmpleadoController {
             empleadoService.existsByDni(empleadoDto.getDni())) {
             return new ResponseEntity<>("Datos inválidos o DNI ya existente.", HttpStatus.BAD_REQUEST);
         }
-
-        Rol rol = Rol.valueOf(empleadoDto.getRole().toUpperCase());
-
+    
+        Rol rol;
+        try {
+            rol = Rol.valueOf(empleadoDto.getRole().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("Rol inválido.", HttpStatus.BAD_REQUEST);
+        }
+    
         Empleado empleadoNuevo = new Empleado(
             empleadoDto.getNombre(),
             empleadoDto.getApellido(),
@@ -59,10 +64,11 @@ public class EmpleadoController {
             empleadoDto.getPassword(),
             rol
         );
-
+    
         empleadoService.saveEmpleado(empleadoNuevo);
         return new ResponseEntity<>("Empleado guardado exitosamente.", HttpStatus.CREATED);
     }
+    
 
     @GetMapping("/detail/{id}")
     public ResponseEntity<Optional<Empleado>> getById(@PathVariable("id") int id) {

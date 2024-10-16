@@ -1,6 +1,7 @@
 package com.gestor.tienda.Dto;
 
 import com.gestor.tienda.Entity.Persona;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
